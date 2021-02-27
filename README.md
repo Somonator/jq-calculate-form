@@ -29,4 +29,4 @@ And callback function, which returns:
 - event - jq event object
 - formData - form data object for calc
 - fnc - additional functions:
- - fns.IsValid(...names) - check fields ba names for presence and number
+	- fns.IsValid(...names) - check fields ba names for presence and number
