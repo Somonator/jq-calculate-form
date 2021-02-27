@@ -25,8 +25,10 @@ The plugin expects an object and with possible properties:
 - triggerName - form event during which the callback function is triggered
 - customNames - set custom names attr, if not exists, for the fileds
 - inputNumberMinMaxLimit - Special for input number, limit input field by max, min values
+
+
 And callback function, which returns:
 - event - jq event object
 - formData - form data object for calc
 - fnc - additional functions:
-	- fns.IsValid(...names) - check fields ba names for presence and number
+  - fns.IsValid(...names) - check fields ba names for presence and number
