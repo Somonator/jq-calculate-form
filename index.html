@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>jQuery calculateForm</title>
+</head>
+<body>
+	<form>
+		<p>width</p>
+		<input type="number" name="width" min="1">
+		
+		<p>length</p>
+		<input type="number" name="length" min="1">
+		
+		<h1></h1>
+	</form>
+
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+	<script src="calculateForm.js"></script>
+	<script>
+	$('form').calculateForm({
+		triggerName: 'change',
+		customNames: false,
+		inputNumberMinMaxLimit: true
+	}, function(event, formData, fns) {
+		if (!fns.IsValid('width', 'length')) {
+			return;
+		}
+
+
+		let square_area = formData['width'] * formData['length'];
+		
+		$('h1').html('Square area ' + square_area);
+	}).change();
+	</script>
+</body>
+</html>
