@@ -83,7 +83,7 @@
             }
 
 
-            $.extend(options, default_options);
+            $.extend(default_options, options);
 
             if (options.customNames) {
                 $(form).find(':input').each(setCustomName);
