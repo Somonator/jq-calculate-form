@@ -22,7 +22,7 @@
 	$('form').calculateForm({
 		triggerName: 'change',
 		customNames: false,
-		inputNumberMinMaxLimit: true
+		inputNumberMinMaxLimit: false
 	}, function(event, formData, fns) {
 		if (!fns.IsValid('width', 'length')) {
 			return;
