@@ -32,5 +32,5 @@ And callback function, which returns:
 - formData - form data object for calc
 - fnc - additional functions:
   - fns.isIsset(...names) - check isset fields by names list
-  - fns.isChecked(name) - check is checked checkbox and radio fields
+  - fns.isChecked(name) - check is checked checkbox field
   - fns.isSelected(name, value) - check is selected need value in select
