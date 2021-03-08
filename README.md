@@ -33,4 +33,4 @@ And callback function, which returns:
 - fnc - additional functions:
   - fns.isIsset(...names) - check isset fields by names list
   - fns.isChecked(name) - check is checked checkbox field
-  - fns.isSelected(name, value) - check is selected need value in select
+  - fns.isSelected(name, value) - check is selected need value in select and radio
