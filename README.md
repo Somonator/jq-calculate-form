@@ -31,4 +31,6 @@ And callback function, which returns:
 - event - jq event object
 - formData - form data object for calc
 - fnc - additional functions:
-  - fns.IsValid(...names) - check fields ba names for presence and number
+  - fns.isIsset(...names) - check isset fields by names list
+  - fns.isChecked(name) - check is checked checkbox and radio fields
+  - fns.isSelected(name, value) - check is selected need value in select

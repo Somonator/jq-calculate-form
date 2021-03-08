@@ -15,7 +15,7 @@
                 formData = {};
             
             $.each(serializeArray, function(i, field){
-                if (field.value.trim() != '') {
+                if (field.value.trim() !== '') {
                     field.value = isNumeric(field.value) ? +field.value : field.value;
 
                     formData[field.name] = field.value;
@@ -38,34 +38,52 @@
                 return;
             }
 
-            if (+this.value > +this.max) {
+            if (this.max !== '' && +this.value > +this.max) {
                 this.value = this.max;
-            } else if (+this.value < +this.min) {
+            } else if (this.min !== '' && +this.value < +this.min) {
                 this.value = this.min;
             }
-            
-            $(this).change();
         }
-
         
-        function IsValidElems() {
-            let isValid = true,
+        function isIsset(...names) {
+            let isIsset = true,
                 formData = this;
 
-            Array.from(arguments).forEach(function (el) {
-                if (formData[el] === undefined || typeof formData[el] !== 'number') {
-                    isValid = false;
+            names.forEach(function (el) {
+                if (formData[el] === undefined) {
+                    isIsset = false;
                 }
             });
 
-            return isValid;
+            return isIsset;
+        }
+
+        function isChecked(name) {
+            let formData = this;
+
+            return formData[name] !== undefined;
+        }
+
+        function isSelected(name, value) {
+            let isSelected = false,
+                formData = this;
+
+            value = isNumeric(value) ? +value : value;
+
+            if (formData[name] !== undefined) {
+                isSelected = formData[name] === value;
+            }
+
+            return isSelected;
         }
 
         function eventCallback(event) {
-            let formData = getSerializeObject(this);
+            var formData = getSerializeObject(this);
 
             callback.call(this, event, formData, {
-                IsValid: IsValidElems.bind(formData)
+                isIsset: isIsset.bind(formData),
+                isChecked: isChecked.bind(formData),
+                isSelected: isSelected.bind(formData)
             });
         }
 
@@ -78,7 +96,7 @@
                 throw new Error('calculateForm: Argument callback must be a function');
             }
 
-            if ($(this).prop('tagName').toLowerCase() !== 'form') {
+            if ($(this).prop('tagName') && $(this).prop('tagName').toLowerCase() !== 'form') {
                 throw new Error('calculateForm: Init element must be a form');
             }
 
@@ -86,7 +104,7 @@
             $.extend(default_options, options);
 
             if (options.customNames) {
-                $(form).find(':input').each(setCustomName);
+                $(this).find(':input').each(setCustomName);
             }
 
             if (options.inputNumberMinMaxLimit) {
